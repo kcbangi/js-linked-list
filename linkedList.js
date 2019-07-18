@@ -15,6 +15,7 @@ function linkedListGenerator() {
   }
 
   function add(value) {
+    let newNode = {};
     if (head === null) {
       head = {};
       head.value = value;
@@ -22,7 +23,6 @@ function linkedListGenerator() {
       tail = head;
       return head;
     } else {
-      let newNode = {};
       tail.next = newNode;
       newNode.value = value;
       newNode.next = null;
@@ -62,7 +62,23 @@ function linkedListGenerator() {
     }
   }
 
-  function insert(value, index) {}
+  function insert(value, index) {
+    let newNode = {};
+    let previousNode = get(index - 1);
+    let current = get(index);
+
+    newNode.value = value;
+    newNode.next = null;
+    if (!current) {
+      return false;
+    } else if (!previousNode) {
+      newNode.next = head;
+      head = newNode;
+    } else {
+      newNode.next = current;
+      previousNode.next = newNode;
+    }
+  }
 
   return {
     getHead,
